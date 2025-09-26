@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>يلا فكرة 💡</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap">
+    <style>
+        :root {
+            --primary-color: #0d1b2a;
+            --secondary-color: #1b263b;
+            --accent-color: #ffc107;
+            --text-color: #e0e1dd;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --form-bg: rgba(255, 255, 255, 0.03);
+            --focus-border: #415a77;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--primary-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+
+      
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particle-move 20s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) { width: 5px; height: 5px; top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 8px; height: 8px; top: 40%; left: 30%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 6px; height: 6px; top: 60%; left: 50%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 7px; height: 7px; top: 80%; left: 70%; animation-delay: 6s; }
+        .particle:nth-child(5) { width: 9px; height: 9px; top: 10%; left: 90%; animation-delay: 8s; }
+        .particle:nth-child(6) { width: 4px; height: 4px; top: 30%; left: 5%; animation-delay: 10s; }
+        .particle:nth-child(7) { width: 10px; height: 10px; top: 50%; left: 20%; animation-delay: 12s; }
+        .particle:nth-child(8) { width: 6px; height: 6px; top: 70%; left: 45%; animation-delay: 14s; }
+        .particle:nth-child(9) { width: 5px; height: 5px; top: 90%; left: 60%; animation-delay: 16s; }
+        .particle:nth-child(10) { width: 8px; height: 8px; top: 5%; left: 80%; animation-delay: 18s; }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem 1rem;
+        }
+
+        .survey-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+            animation: card-in 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 700;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            text-shadow: 0 0 15px rgba(224, 172, 39, 0.4);
+            animation: header-in 1s ease-out;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            animation: fadeIn 1.5s 0.5s ease-out backwards;
+        }
+
+        .form-group {
+            margin-bottom: 2.5rem;
+            animation: slideUpIn 1s ease-out;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--form-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 100px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--focus-border);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(65, 90, 119, 0.2);
+        }
+
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        
+        textarea:hover {
+            box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+            transform: scale(1.01);
+            border-color: var(--accent-color);
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 3rem auto 0;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 15px;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(224, 172, 39, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(224, 172, 39, 0.6);
+            background: #ffdb58;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--accent-color) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: button-pulse 2s infinite ease-out;
+        }
+
+        button:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes card-in {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes header-in {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUpIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes particle-move {
+            0% { transform: translate(0, 0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translate(100vw, 100vh); opacity: 0; }
+        }
+        @keyframes button-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <div class="survey-card">
+            <h1>يلا فكرة 💡</h1>
+            <p class="subtitle">نحن نؤمن بأن الأفكار تغير العالم..</p>
+            <form   action="https://formspree.io/f/xjkakjwl"
+  method="POST">
+                <div class="form-group">
+                   <label>شو الاسم اللي  نعطيه للمشروع؟</label>
+                    <textarea name="شو الاسم اللي  نعطيه للمشروع؟" placeholder="اكتب هنا ..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>شو الشعار المختصر اللي يوضح فكرة المشروع بسرعة؟</label>
+                    <textarea name="شو الشعار المختصر اللي يوضح فكرة المشروع بسرعة؟" placeholder="اكتب هنا ..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>شو المشكلة اللي  المشروع لازم يحلها للمستخدمين؟</label>
+                    <textarea name="شو المشكلة اللي  المشروع لازم يحلها للمستخدمين؟" placeholder="اكتب هنا ..."></textarea>
+                </div>
+                <div class="form-group">
+                      <label>كيف  المنصة رح تحل المشكلة بطريقة مبتكرة وواضحة؟</label>
+                    <textarea name="كيف  المنصة رح تحل المشكلة بطريقة مبتكرة وواضحة؟" placeholder="اكتب هنا ..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>مين الفئة الأساسية اللي المشروع رح يخدمها أولاً؟</label>
+                   <textarea name="مين الفئة الأساسية اللي المشروع رح يخدمها أولاً؟" placeholder="اكتب هنا ..."></textarea>
+                </div>
+                <div class="form-group">
+                     <label>كيف تتخيلي طريقة تفاعل كل نوع مستخدم مع المنصة؟</label>
+                    <textarea name="كيف تتخيلي طريقة تفاعل كل نوع مستخدم مع المنصة؟" placeholder="اكتب هنا ..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>شو أهم الوظائف اللي تحسي إنها ضرورية من البداية؟</label>
+                    <textarea  name="شو أهم الوظائف اللي تحسي إنها ضرورية من البداية؟" placeholder="اكتب هنا ..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>أي وظائف ثانية ممكن تكون مفيدة لاحقاً لكن مش ضرورية بالنسخة الأولى؟</label>
+                    <textarea name="أي وظائف ثانية ممكن تكون مفيدة لاحقاً لكن مش ضرورية بالنسخة الأولى؟" placeholder="اكتب هنا ..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>شو الميزات اللي تخلي منصتنا مختلفة عن أي منصة ثانية؟</label>
+                  <textarea name="شو الميزات اللي تخلي منصتنا مختلفة عن أي منصة ثانية؟" placeholder="اكتب هنا ..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>شو الميزات المستقبلية اللي ممكن نضيفها لاحقاً؟</label>
+                    <textarea name="شو الميزات المستقبلية اللي ممكن نضيفها لاحقاً؟" placeholder="اكتب هنا ..."></textarea>
+                </div>
+               
+  <button type="submit">إرسال</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
